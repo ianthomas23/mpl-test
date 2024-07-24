@@ -1,0 +1,25 @@
+name: Test
+
+on:
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test1:
+    name: "matplotlib 3.9.1, contourpy 1.2.1"
+    runs-on: "windows-latest"
+    python-version: "3.12"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install "matplotlib==3.9.1" "contourpy==1.2.1"
+      - run: |
+          python test_without.py
+          python test_with.py
