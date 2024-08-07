@@ -97,3 +97,39 @@ jobs:
           python -m pip list
       - run: python test_without.py
       - run: python test_with.py
+
+  test6:
+    name: "matplotlib 3.9.1, contourpy from source"
+    runs-on: "windows-latest"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install matplotlib and contourpy
+        run: |
+          python -m pip install "matplotlib~=3.9.1"
+          python -m pip install -v --no-binary=contourpy contourpy
+          python -m pip list
+      - run: python test_without.py
+      - run: python test_with.py
+
+  test7:
+    name: "matplotlib nightly, contourpy from source"
+    runs-on: "windows-latest"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install matplotlib and contourpy
+        run: |
+          python -m pip install -v --no-binary=contourpy contourpy
+          python -m pip install --only-binary=:all: --pre --upgrade --extra-index-url https://pypi.anaconda.org/scientific-python-nightly-wheels/simple matplotlib
+          python -m pip list
+      - run: python test_without.py
+      - run: python test_with.py
