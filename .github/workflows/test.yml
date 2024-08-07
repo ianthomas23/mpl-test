@@ -20,7 +20,7 @@ jobs:
           python-version: "3.12"
       - name: Install matplotlib and contourpy
         run: |
-          python -m pip install "matplotlib==3.9.1" "contourpy==1.2.1"
+          python -m pip install "matplotlib~=3.9.1" "contourpy==1.2.1"
           python -m pip list
       - name: Run tests
         run: |
@@ -57,7 +57,7 @@ jobs:
           python-version: "3.12"
       - name: Install matplotlib and contourpy
         run: |
-          python -m pip install "matplotlib==3.9.1"
+          python -m pip install "matplotlib~=3.9.1"
           python -m pip install --only-binary=:all: --pre --upgrade --extra-index-url https://pypi.anaconda.org/scientific-python-nightly-wheels/simple contourpy
           python -m pip list
       - run: python test_without.py
@@ -92,7 +92,7 @@ jobs:
           python-version: "3.12"
       - name: Install matplotlib and contourpy
         run: |
-          python -m pip install -v --no-binary=matplotlib "matplotlib==3.9.1" -Csetup-args=-Dvsenv=true
+          python -m pip install -v --no-binary=matplotlib "matplotlib~=3.9.1" -Csetup-args=-Dvsenv=true
           python -m pip install --only-binary=:all: --pre --upgrade --extra-index-url https://pypi.anaconda.org/scientific-python-nightly-wheels/simple contourpy
           python -m pip list
       - run: python test_without.py
